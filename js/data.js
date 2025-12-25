@@ -227,3 +227,76 @@ const contactData = {
         { platform: 'LinkedIn', url: 'https://www.linkedin.com/in/mel-adna/', icon: 'fab fa-linkedin' },
     ]
 };
+
+const certificatesData = [
+    {
+        title: 'Flutter Masterclass - Your Complete Guide to App Development',
+        issuer: 'Udemy',
+        date: 'Sep 2025',
+        credentialId: 'UC-8f6011e9-90fa-46b2-934f-dfa4d175123e',
+        logo: 'assets/images/udemy_logo.png' 
+    },
+    {
+        title: 'Complete Flutter Guide 2025: Build Android, iOS and Web apps',
+        issuer: 'Udemy',
+        date: 'Aug 2025',
+        credentialId: 'UC-b623879c-57b8-44d5-8e11-e3f27a72481c',
+        logo: 'assets/images/udemy_logo.png'
+    },
+    {
+        title: 'Computer Networks and Network Security',
+        issuer: 'IBM',
+        date: 'Aug 2025',
+        credentialId: '41QCX8PRK125',
+        logo: 'assets/images/ibm_logo.png'
+    },
+    {
+        title: 'Critical Thinking Skills for the Professional',
+        issuer: 'University of California, Davis',
+        date: 'Aug 2025',
+        credentialId: 'CQ0UHZ692MJ9',
+        logo: 'assets/images/uc_davis_logo.png'
+    },
+    {
+        title: 'Cybersecurity Compliance Framework, Standards & Regulations',
+        issuer: 'IBM',
+        date: 'Aug 2025',
+        credentialId: 'G5A9U9XW9VCI',
+        logo: 'assets/images/ibm_logo.png'
+    },
+    {
+        title: 'Generative AI: Prompt Engineering Basics',
+        issuer: 'IBM',
+        date: 'Aug 2025',
+        credentialId: 'TP768VRQ257Q',
+        logo: 'assets/images/ibm_logo.png'
+    },
+    {
+        title: 'Introduction to Cybersecurity Tools & Cyberattacks',
+        issuer: 'IBM',
+        date: 'Aug 2025',
+        credentialId: 'T81ONWRWMVBP',
+        logo: 'assets/images/ibm_logo.png'
+    },
+    {
+        title: 'Prompt Engineering Basics',
+        issuer: 'UM6P - University Mohammed VI Polytechnic',
+        date: 'Aug 2025',
+        credentialId: '',
+        logo: 'assets/images/um6p_logo.png'
+    },
+    {
+        title: 'Solving Problems with Creative and Critical Thinking',
+        issuer: 'IBM',
+        date: 'Aug 2025',
+        credentialId: '7W7I3Y76KRFT',
+        logo: 'assets/images/ibm_logo.png'
+    },
+    {
+        title: 'IT Fundamentals for Cybersecurity – MDA Certificate',
+        issuer: 'UM6P - University Mohammed VI Polytechnic',
+        date: 'Jul 2025',
+        credentialId: '',
+        logo: 'assets/images/um6p_logo.png'
+    }
+];

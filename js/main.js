@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSkills();
     renderProjects('all');
     renderExperience();
+    renderCertificates();
     renderContact();
 
     // Event Listeners
@@ -471,6 +472,36 @@ function renderExperience() {
       </div>
     `;
         container.appendChild(item);
+    });
+}
+
+function renderCertificates() {
+    const container = document.getElementById('certificates-grid');
+    if (!container) return; // Guard clause in case element doesn't exist
+
+    certificatesData.forEach(cert => {
+        const card = document.createElement('div');
+        card.className = 'card fade-in-up';
+
+        // Check if credential ID exists to optionally display it
+        const credentialHtml = cert.credentialId
+            ? `<div class="caption text-muted" style="margin-top: 0.5rem; font-size: 11px;">ID: ${cert.credentialId}</div>`
+            : '';
+
+        card.innerHTML = `
+            <div style="display: flex; gap: 1rem; align-items: flex-start;">
+                <div style="width: 48px; height: 48px; flex-shrink: 0; background-color: rgba(99, 102, 241, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                   <img src="${cert.logo}" alt="${cert.issuer}" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\\'material-icons-round text-accent\\'>school</span>'">
+                </div>
+                <div>
+                   <h3 class="heading-small" style="font-size: 16px; margin-bottom: 0.25rem;">${cert.title}</h3>
+                   <div class="text-accent" style="font-size: 13px; font-weight: 500;">${cert.issuer}</div>
+                   <div class="caption text-muted">${cert.date}</div>
+                   ${credentialHtml}
+                </div>
+            </div>
+        `;
+        container.appendChild(card);
     });
 }
 
