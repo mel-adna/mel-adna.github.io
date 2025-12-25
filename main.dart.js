@@ -25969,7 +25969,7 @@ s=q}for(;;)switch(s){case 0:if($.a2==null)A.asc()
 $.a2.toString
 q=3
 s=6
-return A.R($.X5().tS(".env"),$async$apP)
+return A.R($.X5().tS("env"),$async$apP)
 case 6:q=1
 s=5
 break
