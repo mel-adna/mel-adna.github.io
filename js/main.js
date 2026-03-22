@@ -22,6 +22,27 @@ document.addEventListener('DOMContentLoaded', () => {
     initUIEnhancements();
     initContactForm();
 
+    // Modal listeners
+    const modal = document.getElementById('project-modal');
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeProjectModal();
+            }
+        });
+        
+        const closeBtn = modal.querySelector('.modal-close');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', closeProjectModal);
+        }
+    }
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeProjectModal();
+        }
+    });
+
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -37,26 +58,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Theme Logic
+// Theme Logic (Disabled for strict aesthetic)
 function initTheme() {
+    // Force dark theme
+    setTheme('dark');
+    
     const themeToggle = document.getElementById('theme-toggle');
-    const icon = themeToggle.querySelector('.material-icons-round');
-
-    // Check local storage or system preference
-    const savedTheme = localStorage.getItem('theme');
-    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    if (savedTheme === 'light') {
-        setTheme('light');
-    } else {
-        setTheme('dark'); // Default to dark
+    if (themeToggle) {
+        themeToggle.style.display = 'none';
     }
-
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        setTheme(newTheme);
-    });
 }
 
 function setTheme(theme) {
@@ -403,32 +413,68 @@ function renderProjects(filter) {
         // Determine icon based on category
         let icon = 'apps';
         if (project.category === 'mobile') icon = 'smartphone';
-        else if (project.category === 'web') icon = 'web';
+        else if (project.category === 'web') icon = 'language';
         else if (project.category === 'package') icon = 'inventory_2';
 
-        // Use placeholder if no image (though we handled this in CSS/HTML structure generally)
-        const imageHtml = project.imageUrl
-            ? `<img src="${project.imageUrl}" alt="${project.title}" loading="lazy" onerror="this.parentElement.innerHTML='<div style=\\'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(99,102,241,0.1);color:var(--accent)\\'><span class=\\'material-icons-round\\' style=\\'font-size:48px\\'>${icon}</span></div>'">`
-            : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(99,102,241,0.1);color:var(--accent)"><span class="material-icons-round" style="font-size: 48px;">${icon}</span></div>`;
+        // NEW: Technical Icon Module instead of a simple image
+        const imageHtml = `
+            <div class="project-icon-module" style="width:100%; height:200px; display:flex; align-items:center; justify-content:center; background:#0F0F0F; position:relative; overflow:hidden; border: 1px solid rgba(255,255,255,0.03); border-radius: 4px;">
+                <div class="module-grid" style="position:absolute; inset:0; background-image: radial-gradient(rgba(0,255,102,0.1) 1px, transparent 1px); background-size: 20px 20px; opacity: 0.3;"></div>
+                <div class="module-id" style="position:absolute; top: -10px; left: -10px; font-family: 'Syncopate', sans-serif; font-size: 80px; font-weight: 800; color: rgba(255,255,255,0.02); pointer-events:none;">0${projectsData.indexOf(project) + 1}</div>
+                <div class="module-icon-wrap" style="position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; gap: 1rem;">
+                    <span class="material-icons-round" style="font-size: 64px; color: var(--accent); filter: drop-shadow(0 0 10px rgba(0,255,102,0.4));">${icon}</span>
+                    <span style="font-family: 'Syncopate', sans-serif; font-size: 8px; color: var(--muted-foreground); letter-spacing: 2px;">SECURE_BUILD_V2</span>
+                </div>
+            </div>
+        `;
 
         const card = document.createElement('div');
         card.className = 'card project-card fade-in-up';
         card.innerHTML = `
-      <div class="project-image">
-        ${imageHtml}
-      </div>
-      <h3 class="heading-small" style="margin-bottom: 0.25rem;">${project.title}</h3>
-      <p class="body-small text-muted" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 1rem;">
-        ${project.description}
-      </p>
-      <div class="project-tags">
-        ${project.technologies.slice(0, 3).map(tech => `<span class="badge badge-accent">${tech}</span>`).join('')}
-      </div>
-      <div style="display: flex; gap: 0.5rem; margin-top: 1rem;">
-        ${project.githubUrl ? `<a href="${project.githubUrl}" target="_blank" class="btn btn-ghost" style="padding: 0.25rem 0.5rem; font-size: 12px;"><i class="fab fa-github"></i> GitHub</a>` : ''}
-        ${project.demoUrl ? `<a href="${project.demoUrl}" target="_blank" class="btn btn-ghost" style="padding: 0.25rem 0.5rem; font-size: 12px;"><i class="fas fa-globe"></i> Demo</a>` : ''}
-      </div>
-    `;
+            <div class="project-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+                <span style="font-family: 'Syncopate', sans-serif; font-size: 8px; color: var(--accent); letter-spacing: 2px;">// PRJ-00${projectsData.indexOf(project) + 1}</span>
+                <span class="badge" style="font-size: 8px; border: 1px solid var(--border); border-radius: 2px; padding: 1px 4px; text-transform: uppercase; color: var(--muted-foreground);">Live</span>
+            </div>
+            
+            <div class="project-image" style="position: relative; border-radius: 4px; overflow: hidden; margin-bottom: 1.5rem;">
+                ${imageHtml}
+                <div style="position: absolute; top: 10px; right: 10px;">
+                    <span style="background: rgba(0,0,0,0.8); color: var(--accent); font-size: 10px; padding: 2px 6px; border-radius: 2px; font-family: 'Syncopate', sans-serif;">${project.category || 'MOBILE'}</span>
+                </div>
+            </div>
+
+            <h3 class="heading-small" style="margin-bottom: 1rem; color: var(--foreground); font-family: 'Syncopate', sans-serif;">${project.title}</h3>
+
+            <div class="project-info-grid" style="display: grid; gap: 0.5rem; margin-bottom: 1.5rem;">
+                <div style="display: flex; gap: 1rem; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem;">
+                    <span style="font-size: 10px; font-family: 'Syncopate', sans-serif; color: var(--muted-foreground); min-width: 80px;">PLATFORM</span>
+                    <span style="font-size: 11px; color: var(--foreground);">${project.category === 'Web' ? 'WEB / DESKTOP' : 'IOS / ANDROID'}</span>
+                </div>
+                <div style="display: flex; gap: 1rem; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem;">
+                    <span style="font-size: 10px; font-family: 'Syncopate', sans-serif; color: var(--muted-foreground); min-width: 80px;">TECH</span>
+                    <span style="font-size: 11px; color: var(--accent);">${project.technologies.slice(0, 2).join(' + ')}</span>
+                </div>
+            </div>
+
+            <p class="body-small text-muted" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 1.5rem; line-height: 1.5;">
+                ${project.description}
+            </p>
+
+            <div class="project-actions" style="display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.05);">
+                <button class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 11px; border-radius: 2px;" onclick="openProjectModal(${projectsData.indexOf(project)})">DETAILS</button>
+                <div style="display: flex; gap: 0.5rem;">
+                    ${project.githubUrl ? `<a href="${project.githubUrl}" target="_blank" class="btn btn-ghost" style="padding: 0.25rem 0.5rem; font-size: 14px;"><i class="fab fa-github"></i></a>` : ''}
+                    ${project.demoUrl ? `<a href="${project.demoUrl}" target="_blank" class="btn btn-ghost" style="padding: 0.25rem 0.5rem; font-size: 14px;"><i class="fas fa-external-link-alt"></i></a>` : ''}
+                </div>
+            </div>
+        `;
+        // Make the whole card clickable for mobile accessibility but respect buttons
+        card.style.cursor = 'pointer';
+        card.onclick = (e) => {
+            if (!e.target.closest('a') && !e.target.closest('button')) {
+                openProjectModal(projectsData.indexOf(project));
+            }
+        };
         container.appendChild(card);
     });
 
@@ -541,4 +587,86 @@ function initScrollSpy() {
             }
         });
     });
+}
+
+// Modal Logic
+function openProjectModal(index) {
+    const project = projectsData[index];
+    if (!project) return;
+    
+    const modal = document.getElementById('project-modal');
+    const modalBody = document.getElementById('modal-body-content');
+    
+    if (!modal || !modalBody) return;
+    
+    // Determine icon based on category for placeholder
+    let icon = 'apps';
+    if (project.category === 'mobile') icon = 'smartphone';
+    else if (project.category === 'web') icon = 'web';
+    else if (project.category === 'package') icon = 'inventory_2';
+    
+    const imageHtml = project.imageUrl
+        ? `<img src="${project.imageUrl}" alt="${project.title}" class="modal-header-img" onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div style=\\'width:100%;height:250px;display:flex;align-items:center;justify-content:center;background:rgba(99,102,241,0.1);color:var(--accent);border-bottom:1px solid var(--border);\\'><span class=\\'material-icons-round\\' style=\\'font-size:64px\\'>${icon}</span></div>'">`
+        : `<div style="width:100%;height:250px;display:flex;align-items:center;justify-content:center;background:rgba(99,102,241,0.1);color:var(--accent);border-bottom:1px solid var(--border);"><span class="material-icons-round" style="font-size: 64px;">${icon}</span></div>`;
+
+    const descriptionText = project.fullDescription || project.description;
+    
+    // Convert newlines to preserved paragraphs
+    const descriptionParagraphs = descriptionText
+        .split('\n')
+        .map(p => p.trim() ? `<p class="body-medium text-muted" style="margin-bottom: 0.75rem;">${p.replace(/•/g, '• ')}</p>` : '')
+        .join('');
+        modalBody.innerHTML = `
+        <div class="modal-header-text" style="padding: 3rem 2rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); background: linear-gradient(rgba(0,255,102,0.05), transparent);">
+            <span style="font-family: 'Syncopate', sans-serif; font-size: 10px; color: var(--accent); letter-spacing: 4px; display: block; margin-bottom: 0.5rem;">// PROJECT.OVERVIEW</span>
+            <h2 class="display-small" style="text-transform: uppercase;">${project.title}</h2>
+        </div>
+        
+        <div class="modal-body-inner" style="padding: 2rem;">
+            <div class="modal-meta-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; margin-bottom: 2.5rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.05);">
+                <div class="meta-item">
+                    <span style="display: block; font-family: 'Syncopate', sans-serif; font-size: 8px; color: var(--muted-foreground); margin-bottom: 0.5rem;">CATEGORY</span>
+                    <span style="font-size: 13px; font-weight: 500; color: var(--foreground);">${project.category || 'MOBILE'}</span>
+                </div>
+                <div class="meta-item">
+                    <span style="display: block; font-family: 'Syncopate', sans-serif; font-size: 8px; color: var(--muted-foreground); margin-bottom: 0.5rem;">PLATFORM</span>
+                    <span style="font-size: 13px; font-weight: 500; color: var(--foreground);">${project.category === 'Web' ? 'CHROME / SAFARI / DEV' : 'IOS / ANDROID'}</span>
+                </div>
+                <div class="meta-item">
+                    <span style="display: block; font-family: 'Syncopate', sans-serif; font-size: 8px; color: var(--muted-foreground); margin-bottom: 0.5rem;">CORE STACK</span>
+                    <span style="font-size: 13px; font-weight: 500; color: var(--accent);">${project.technologies.slice(0, 3).join(', ')}</span>
+                </div>
+            </div>
+
+            <div class="modal-description-wrapper">
+                <h4 style="font-family: 'Syncopate', sans-serif; font-size: 10px; letter-spacing: 2px; margin-bottom: 1rem; color: var(--muted-foreground);">// THE CHALLENGE</h4>
+                <div class="modal-description" style="line-height: 1.7; color: var(--foreground); opacity: 0.9;">
+                    ${descriptionParagraphs}
+                </div>
+            </div>
+
+            <div class="modal-features" style="margin-top: 2rem;">
+                <h4 style="font-family: 'Syncopate', sans-serif; font-size: 10px; letter-spacing: 2px; margin-bottom: 1rem; color: var(--muted-foreground);">// KEY INTEGRATIONS</h4>
+                <div class="tech-stack-wrap" style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                    ${project.technologies.map(tech => `<span class="badge" style="border: 1px solid var(--border); background: var(--secondary); padding: 4px 10px; border-radius: 2px; font-size: 11px;">${tech}</span>`).join('')}
+                </div>
+            </div>
+
+            <div class="modal-footer-actions" style="margin-top: 3rem; display: flex; gap: 1rem;">
+                ${project.demoUrl ? `<a href="${project.demoUrl}" target="_blank" class="btn btn-primary">LIVE EXPERIENCE</a>` : ''}
+                ${project.githubUrl ? `<a href="${project.githubUrl}" target="_blank" class="btn btn-outline">SOURCE CODE</a>` : ''}
+            </div>
+        </div>
+    `;
+    
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent scrolling
+}
+
+function closeProjectModal() {
+    const modal = document.getElementById('project-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
 }

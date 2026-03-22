@@ -1,47 +1,52 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syncopate:wght@400;700&display=swap');
 
 :root {
-  /* Light Theme Defaults */
-  --background: #FFFFFF;
-  --background-rgb: 255, 255, 255;
-  --foreground: #0A0A0A;
-  --card: #FFFFFF;
-  --card-rgb: 255, 255, 255;
-  --card-foreground: #0A0A0A;
-  --primary: #171717;
-  --primary-foreground: #FAFAFA;
-  --secondary: #F5F5F5;
-  --secondary-foreground: #171717;
-  --muted: #F5F5F5;
-  --muted-foreground: #737373;
-  --accent: #6366F1;
-  --accent-foreground: #FFFFFF;
-  --border: #E5E5E5;
-  --input: #E5E5E5;
-  --ring: #6366F1;
-  --radius: 0.5rem;
-  --radius-lg: 0.75rem;
+  /* Tech/Cyber Theme Defaults (Enforcing strict dark aesthetic) */
+  --background: #050505;
+  --background-rgb: 5, 5, 5;
+  --foreground: #FAFAFA;
+  --card: #0F0F0F;
+  --card-rgb: 15, 15, 15;
+  --card-foreground: #FAFAFA;
+  --primary: #00FF66; /* Neon Green */
+  --primary-foreground: #000000;
+  --secondary: #161616;
+  --secondary-foreground: #FAFAFA;
+  --muted: #161616;
+  --muted-foreground: #888888;
+  --accent: #00FF66;
+  --accent-foreground: #000000;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: #161616;
+  --ring: #00FF66;
+  
+  /* Sharper borders for tech feel */
+  --radius: 0.375rem;
+  --radius-lg: 0.5rem;
   --radius-full: 9999px;
+  
+  --grid-color: rgba(255, 255, 255, 0.03);
 }
 
-[data-theme='dark'] {
-  --background: #0A0A0A;
-  --background-rgb: 10, 10, 10;
+[data-theme='dark'], [data-theme='light'] {
+  /* Enforce dark theme variables everywhere to stay true to reference */
+  --background: #050505;
+  --background-rgb: 5, 5, 5;
   --foreground: #FAFAFA;
-  --card: #171717;
-  --card-rgb: 23, 23, 23;
+  --card: #0F0F0F;
+  --card-rgb: 15, 15, 15;
   --card-foreground: #FAFAFA;
-  --primary: #FAFAFA;
-  --primary-foreground: #171717;
-  --secondary: #262626;
+  --primary: #00FF66;
+  --primary-foreground: #000000;
+  --secondary: #161616;
   --secondary-foreground: #FAFAFA;
-  --muted: #262626;
-  --muted-foreground: #A3A3A3;
-  --accent: #818CF8;
-  --accent-foreground: #0A0A0A;
-  --border: #262626;
-  --input: #262626;
-  --ring: #818CF8;
+  --muted: #161616;
+  --muted-foreground: #888888;
+  --accent: #00FF66;
+  --accent-foreground: #000000;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: #161616;
+  --ring: #00FF66;
 }
 
 * {
@@ -51,12 +56,19 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
   background-color: var(--background);
   color: var(--foreground);
   line-height: 1.6;
   transition: background-color 0.3s ease, color 0.3s ease;
   overflow-x: hidden;
+  
+  /* Tech grid background overlay */
+  background-image: 
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-attachment: fixed;
 }
 
 a {
@@ -75,45 +87,70 @@ img {
 }
 
 /* Typography Utility Classes based on AppTypography */
+h1, h2, h3, h4, h5, h6, .display-large, .display-medium, .display-small, .heading-large, .heading-medium, .heading-small {
+  font-family: 'Syncopate', sans-serif;
+  text-transform: uppercase;
+}
+
 .display-large {
-  font-size: 60px;
-  font-weight: 600;
+  font-size: min(8vw, 84px);
+  font-weight: 700;
+  letter-spacing: -2px;
+  line-height: 1.05;
+}
+
+.display-medium {
+  font-size: min(6vw, 64px);
+  font-weight: 700;
   letter-spacing: -1.5px;
   line-height: 1.1;
 }
 
-.display-medium {
-  font-size: 48px;
-  font-weight: 600;
-  letter-spacing: -1.0px;
+.display-small {
+  font-size: min(4vw, 42px);
+  font-weight: 700;
+  letter-spacing: -1px;
   line-height: 1.15;
 }
 
-.display-small {
-  font-size: 36px;
-  font-weight: 600;
-  letter-spacing: -0.5px;
-  line-height: 1.2;
-}
-
 .heading-large {
-  font-size: 32px;
-  font-weight: 600;
-  letter-spacing: -0.5px;
-  line-height: 1.25;
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.2;
 }
 
 .heading-medium {
   font-size: 24px;
-  font-weight: 600;
-  letter-spacing: -0.25px;
+  font-weight: 700;
+  letter-spacing: 0;
   line-height: 1.3;
 }
 
 .heading-small {
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
   line-height: 1.4;
+  letter-spacing: 0.5px;
+}
+
+/* Mobile Typography Adjustments */
+@media (max-width: 768px) {
+    .display-large {
+        font-size: 4.5rem;
+        letter-spacing: -1px;
+    }
+    
+    .display-medium {
+        font-size: 3rem;
+    }
+    
+    .heading-large {
+        font-size: 2.25rem;
+    }
+    
+    .heading-medium {
+        font-size: 1.75rem;
+    }
 }
 
 .body-large {
@@ -174,39 +211,45 @@ img {
   align-items: center;
   justify-content: center;
   border-radius: var(--radius);
-  font-weight: 500;
-  font-size: 14px;
-  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 0.6rem 1.2rem;
   transition: all 0.2s;
   cursor: pointer;
   border: 1px solid transparent;
   gap: 0.5rem;
+  font-family: 'Space Grotesk', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .btn-lg {
   padding: 0.75rem 1.5rem;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .btn-primary {
   background-color: var(--primary);
   color: var(--primary-foreground);
+  box-shadow: 0 0 15px rgba(0, 255, 102, 0.3);
 }
 
 .btn-primary:hover {
-  opacity: 0.9;
+  background-color: transparent;
+  color: var(--primary);
+  border-color: var(--primary);
+  box-shadow: 0 0 20px rgba(0, 255, 102, 0.5);
 }
 
 .btn-outline {
   background-color: transparent;
-  border-color: var(--border);
+  border-color: rgba(255, 255, 255, 0.2);
   color: var(--foreground);
 }
 
 .btn-outline:hover {
-  background-color: var(--accent);
-  border-color: var(--accent);
-  color: var(--accent-foreground);
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: var(--foreground);
 }
 
 .btn-ghost {
@@ -215,7 +258,8 @@ img {
 }
 
 .btn-ghost:hover {
-  background-color: var(--muted);
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--primary);
 }
 
 /* Icons */

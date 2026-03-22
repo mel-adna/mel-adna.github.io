@@ -47,10 +47,10 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="container navbar-content">
-            <div class="logo">
-                <div class="logo-icon"></div>
-                <span class="logo-text desktop-only">Mohamed Eladnani</span>
-            </div>
+            <a href="#" class="logo">
+                <span class="logo-prefix">//</span>
+                <span class="logo-text">ELADNANI</span>
+            </a>
 
             <div class="nav-links desktop-only">
                 <a href="#about" class="nav-link">About</a>
@@ -87,25 +87,28 @@
         <!-- Hero Section -->
         <section id="hero" class="hero-section">
             <div class="hero-glow-bg"></div>
-            <div class="container hero-content">
-                <div class="status-badge">
-                    <span class="status-dot"></span>
-                    <span class="status-text">Open to opportunities</span>
+            <div class="container hero-content" style="align-items: flex-start; text-align: left;">
+                <div class="status-badge" style="border: 1px solid var(--border); background: var(--secondary); border-radius: 4px; padding: 0.25rem 0.5rem; margin-bottom: 2rem;">
+                    <span class="status-dot" style="background-color: var(--accent);"></span>
+                    <span class="status-text" style="color: var(--accent); font-family: 'Syncopate', sans-serif; font-size: 10px; letter-spacing: 2px;">AVAILABLE FOR WORK • 2026</span>
                 </div>
 
-                <h1 class="display-large hero-name">Crafting High-Performance Mobile Experiences with Flutter</h1>
-                <h2 class="heading-medium text-accent">Software Engineer & 1337 Alumni</h2>
-
-                <p class="body-large text-muted hero-description">
-                    Turning complex algorithms into beautiful, scalable cross-platform applications.
+                <h1 class="display-large hero-name">
+                    High <br>
+                    Performance <br>
+                    <span class="neon-box-text">APPS.</span>
+                </h1>
+                
+                <p class="body-medium text-muted hero-description" style="text-transform: none; font-family: 'Space Grotesk', sans-serif; max-width: 450px; margin-top: 1.5rem; letter-spacing: normal;">
+                    Software Engineer & 1337 Alumni. Turning complex algorithms into beautiful, scalable cross-platform applications.
                 </p>
 
-                <div class="hero-actions">
-                    <a href="#projects" class="btn btn-primary btn-lg">
-                        View Projects <span class="material-icons-round">arrow_forward</span>
+                <div class="hero-actions" style="justify-content: flex-start; margin-bottom: 3rem;">
+                    <a href="#contact" class="btn btn-primary btn-lg">
+                        <span class="material-icons-round" style="font-size: 18px;">mail</span> Email Us
                     </a>
-                    <a href="#contact" class="btn btn-outline btn-lg">
-                        Contact Me <span class="material-icons-round">mail_outline</span>
+                    <a href="#projects" class="btn btn-outline btn-lg">
+                        Browse Projects <span class="material-icons-round" style="font-size: 18px;">arrow_downward</span>
                     </a>
                 </div>
 
@@ -168,11 +171,13 @@
 
         <!-- Projects Section -->
         <section id="projects" class="section">
-            <div class="container">
-                <div class="section-header">
-                    <h2 class="heading-large">Featured Projects</h2>
-                    <p class="body-medium text-muted">A selection of projects that showcase my skills and experience</p>
+            <div class="container" style="display: flex; flex-direction: column; align-items: flex-start; text-align: left;">
+                <div style="margin-bottom: 2rem;">
+                    <span style="font-family: 'Syncopate', sans-serif; font-size: 10px; color: var(--accent); letter-spacing: 3px;">// WORKS</span>
+                    <h2 class="display-medium" style="margin-top: 0.5rem;">Featured <br> Projects</h2>
                 </div>
+                <p class="body-medium text-muted">A selection of projects that showcase my skills and experience</p>
+                
 
                 <div class="tabs">
                     <div class="tab-list">
@@ -248,6 +253,18 @@
     <button id="back-to-top" class="back-to-top" aria-label="Back to top">
         <span class="material-icons-round">arrow_upward</span>
     </button>
+
+    <!-- Project Details Modal -->
+    <div id="project-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close modal">
+                <span class="material-icons-round">close</span>
+            </button>
+            <div id="modal-body-content">
+                <!-- Modal content injected by JS -->
+            </div>
+        </div>
+    </div>
 
     <!-- Toast Notifications -->
     <div id="toast-container"></div>
