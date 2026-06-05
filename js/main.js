@@ -521,6 +521,23 @@ function renderExperience() {
     });
 }
 
+function getIssuerIcon(issuer) {
+    const lowerIssuer = issuer.toLowerCase();
+    if (lowerIssuer.includes('udemy')) {
+        return '<span style="font-family: \'Syncopate\', sans-serif; font-weight: 700; font-size: 20px; color: var(--accent);">U</span>';
+    }
+    if (lowerIssuer.includes('ibm')) {
+        return '<span style="font-family: \'Syncopate\', sans-serif; font-weight: 700; font-size: 14px; color: var(--accent); letter-spacing: 1px;">IBM</span>';
+    }
+    if (lowerIssuer.includes('california') || lowerIssuer.includes('davis')) {
+        return '<span style="font-family: \'Syncopate\', sans-serif; font-weight: 700; font-size: 13px; color: var(--accent);">UCD</span>';
+    }
+    if (lowerIssuer.includes('um6p') || lowerIssuer.includes('polytechnic')) {
+        return '<span style="font-family: \'Syncopate\', sans-serif; font-weight: 700; font-size: 11px; color: var(--accent);">UM6P</span>';
+    }
+    return '<span class="material-icons-round text-accent" style="font-size: 20px;">school</span>';
+}
+
 function renderCertificates() {
     const container = document.getElementById('certificates-grid');
     if (!container) return; // Guard clause in case element doesn't exist
@@ -534,10 +551,12 @@ function renderCertificates() {
             ? `<div class="caption text-muted" style="margin-top: 0.5rem; font-size: 11px;">ID: ${cert.credentialId}</div>`
             : '';
 
+        const iconHtml = getIssuerIcon(cert.issuer);
+
         card.innerHTML = `
             <div style="display: flex; gap: 1rem; align-items: flex-start;">
-                <div style="width: 48px; height: 48px; flex-shrink: 0; background-color: rgba(99, 102, 241, 0.1); border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-                   <img src="${cert.logo}" alt="${cert.issuer}" style="width: 100%; height: 100%; object-fit: contain;" onerror="this.onerror=null; this.parentElement.innerHTML='<span class=\\'material-icons-round text-accent\\'>school</span>'">
+                <div style="width: 48px; height: 48px; flex-shrink: 0; background-color: rgba(0, 255, 102, 0.1); border: 1px solid rgba(0, 255, 102, 0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                   ${iconHtml}
                 </div>
                 <div>
                    <h3 class="heading-small" style="font-size: 16px; margin-bottom: 0.25rem;">${cert.title}</h3>

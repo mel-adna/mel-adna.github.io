@@ -133,26 +133,6 @@ h1, h2, h3, h4, h5, h6, .display-large, .display-medium, .display-small, .headin
   letter-spacing: 0.5px;
 }
 
-/* Mobile Typography Adjustments */
-@media (max-width: 768px) {
-    .display-large {
-        font-size: 4.5rem;
-        letter-spacing: -1px;
-    }
-    
-    .display-medium {
-        font-size: 3rem;
-    }
-    
-    .heading-large {
-        font-size: 2.25rem;
-    }
-    
-    .heading-medium {
-        font-size: 1.75rem;
-    }
-}
-
 .body-large {
   font-size: 18px;
   font-weight: 400;
@@ -284,6 +264,7 @@ h1, h2, h3, h4, h5, h6, .display-large, .display-medium, .display-small, .headin
 @media (max-width: 768px) {
   .display-large {
     font-size: 36px;
+    letter-spacing: -0.5px;
   }
 
   .display-medium {
@@ -292,6 +273,14 @@ h1, h2, h3, h4, h5, h6, .display-large, .display-medium, .display-small, .headin
 
   .display-small {
     font-size: 28px;
+  }
+
+  .heading-large {
+    font-size: 2.25rem;
+  }
+
+  .heading-medium {
+    font-size: 1.25rem;
   }
 
   .container {
