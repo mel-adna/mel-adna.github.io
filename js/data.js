@@ -1,109 +1,116 @@
 const projectsData = [
     {
-        title: 'E-Commerce Mobile App',
-        description: 'A comprehensive Flutter E-commerce Application designed for scalability and real-time performance. Features a robust product catalog, secure user authentication (Firebase), and seamless shopping cart management.',
-        fullDescription: `A comprehensive Flutter E-commerce Application designed for scalability and real-time performance. Features a robust product catalog, secure user authentication (Firebase), and seamless shopping cart management. Built using Provider state management to ensure fluid user interactions and optimized data flow across iOS and Android platforms.
-                    
-Key Features:
-• Product catalog with categories and search
-• Shopping cart with real-time updates
-• User authentication and profile management
-• Order tracking and history
-• Push notifications for order updates`,
-        technologies: ['Flutter', 'Dart', 'Firebase', 'Provider'],
-        githubUrl: 'https://github.com/mel-adna/e-commerce-app',
-        imageUrl: 'assets/apps_screenshots/e_commerce_app_screenshot.png',
+        title: 'SealX Manager',
+        description: 'Production-grade iOS local media companion and offline video player utility. Implements sandbox-restricted local file management and optimized playback buffers to guarantee privacy-first performance, published on the Apple App Store.',
+        fullDescription: `SealX Manager is a utility application published live on the Apple App Store, designed to provide a secure and rapid local media library on iOS devices.
+        
+Key Technical Integrations:
+• Sandboxed File Access: Utilizes secure local directory structures to isolate and protect user media on-device, prioritizing privacy over third-party cloud integrations.
+• Buffer-Optimized Video Engine: Integrates video playback widgets with custom cache sizing to prevent drops in frames during high-bitrate offline playback.
+• Clean MVVM Architecture: Designed with Riverpod for reactive state management, cleanly separating database models from layout widgets.
+• App Store Compliance: Developed and certified under Apple's rigorous review standards, optimizing bundle sizes (26 MB) and local caching.`,
+        technologies: ['Flutter', 'Dart', 'Riverpod', 'iOS Sandbox', 'Apple App Store SDK'],
+        githubUrl: 'https://github.com/mel-adna',
+        demoUrl: 'https://apps.apple.com/us/app/sealx-manager/id6760955423',
+        imageUrl: 'assets/apps_screenshots/sealx_screenshot.png',
         category: 'mobile',
     },
     {
-        title: 'Task Management App',
-        description: 'Clean and intuitive task management application with categories, priorities, and reminders.',
-        fullDescription: `A productivity-focused task management app built with Flutter.
+        title: 'Tomato: Focus Timer',
+        description: 'Distraction-free time-blocking productivity app published on the Apple App Store. Features a high-fidelity glassmorphic user interface, customizable focus-break intervals, and background-resilient timers.',
+        fullDescription: `Tomato: Focus Timer is a productivity application live on the Apple App Store that helps users manage focus intervals using the Pomodoro technique.
 
-Key Features:
-• Create, edit, and organize tasks
-• Priority levels and due dates
-• Category-based organization
-• Local notifications for reminders
-• Clean, minimal UI design`,
-        technologies: ['Flutter', 'Dart', 'SQLite', 'BLoC'],
-        githubUrl: 'https://github.com/mel-adna/task-manager-app',
-        imageUrl: 'assets/apps_screenshots/task_manager_screenshot.png',
-        category: 'mobile',
-    },
-    {
-        title: 'Weather Application',
-        description: 'A reliable, location-aware Weather Forecast App that delivers accurate, real-time meteorological data.',
-        fullDescription: `A reliable, location-aware Weather Forecast App that delivers accurate, real-time meteorological data. Integrates with RESTful APIs to provide 7-day forecasts and current conditions. leveraging Riverpod for efficient state management and caching strategies to minimize API calls and enhance high-performance user experience.
-
-Key Features:
-• Current weather conditions
-• 7-day weather forecast
-• Location-based weather data
-• Multiple city support
-• Beautiful weather animations`,
-        technologies: ['Flutter', 'Dart', 'REST API', 'Riverpod'],
-        githubUrl: 'https://github.com/mel-adna/weather_app',
-        imageUrl: 'assets/apps_screenshots/weather_app_screenshot.png',
-        category: 'mobile',
-    },
-    {
-        title: 'Chat Application',
-        description: 'Real-time messaging app with Firebase backend, supporting text messages and media sharing.',
-        fullDescription: `A feature-rich chat application with real-time messaging capabilities.
-
-Key Features:
-• Real-time messaging with Firebase
-• User authentication
-• One-on-one and group chats
-• Media sharing (images)
-• Message status indicators`,
-        technologies: ['Flutter', 'Dart', 'Firebase', 'Firestore'],
-        githubUrl: 'https://github.com/mel-adna/chat_app_2026',
-        imageUrl: 'assets/apps_screenshots/chat_2026_screenshot.png',
+Key Technical Integrations:
+• Glassmorphic Design System: Crafted a highly detailed UI using custom styling, blur filters, and micro-animations to improve aesthetic engagement.
+• Resilient Background Services: Implements background task listeners and OS-level local notifications to ensure timer precision even when the application is suspended or minimized.
+• Event-Driven State Flow: Utilizes BLoC architecture to manage complex transitions between focus cycles, break intervals, and active task states.
+• UX Accessibility: Designed with a distraction-free interface matching Apple Human Interface Guidelines for focus states.`,
+        technologies: ['Flutter', 'Dart', 'BLoC', 'Local Notifications', 'CoreGraphics / Shaders'],
+        githubUrl: 'https://github.com/mel-adna',
+        demoUrl: 'https://apps.apple.com/us/app/tomato-focus-timer/id6760948116',
+        imageUrl: 'assets/apps_screenshots/tomato_screenshot.png',
         category: 'mobile',
     },
     {
         title: 'FatigueVision - Driver Safety System',
-        description: 'Real-time mobile application designed to detect driver drowsiness and prevent accidents using computer vision and machine learning.',
-        fullDescription: `FatigueVision is a real-time mobile application designed to detect driver drowsiness and prevent accidents using computer vision and machine learning.
+        description: 'Real-time driver drowsiness detection system utilizing on-device computer vision and machine learning. Computes eye aspect ratios (EAR) on-device to trigger instant audio and haptic alerts.',
+        fullDescription: `FatigueVision is an advanced driver assistance safety application running on-device ML pipelines for instant danger mitigation.
 
-🛠️ Technology Stack
-This project is built using Flutter and leverages several powerful libraries to ensure performance and reliability:
-• Framework: Flutter (SDK ^3.10.1)
-• State Management: Riverpod
-• Computer Vision: Google ML Kit
-• Architecture: Domain-Driven Design (DDD)
-
-🧠 How It Works (The Logic)
-The core functionality revolves around the Eye Aspect Ratio (EAR), a scalar value that indicates the openness of the eye.
-
-1. Face Detection & Landmark Extraction: The app uses Google ML Kit to detect faces and extract landmarks.
-2. EAR Calculation: Calculates the ratio of distances between eyelid points to detect blinking/drowsiness.
-3. Smoothing & Thresholds: Uses rolling average to prevent false positives.
-4. Alert System: Triggers audio, haptic, and visual alerts when drowsiness is detected.
-
-🤖 Interaction with Mobile Learning (On-Device ML)
-• Input: Raw camera feed.
-• Inference: ML Kit Face Detection runs on-device.
-• Output: Face landmarks for EAR calculation.`,
-        technologies: ['Flutter', 'Dart', 'Riverpod', 'Google ML Kit', 'DDD', 'GoRouter'],
+Key Technical Integrations:
+• Real-Time EAR Analysis: Computes mathematical distances between eye landmarks to identify blinking frequency and prolonged eye closure.
+• On-Device ML Inference: Integrates Google ML Kit face mesh detectors directly inside the device CPU/GPU pipeline, bypassing network requirements.
+• Domain-Driven Design (DDD): Modularized structure separating ML inference layers, core domains, data mappings, and reactive UI controllers.
+• Interactive Alarm Loop: Controls custom audio and haptic device feedback loops to prevent alert delay.`,
+        technologies: ['Flutter', 'Dart', 'Riverpod', 'Google ML Kit', 'DDD Architecture', 'GoRouter'],
         githubUrl: 'https://github.com/mel-adna/FatigueVisionApp',
         imageUrl: 'assets/apps_screenshots/fatigue_vision_app.jpeg',
         category: 'mobile',
     },
     {
-        title: 'Portfolio Website',
-        description: 'This portfolio website built with Flutter Web, featuring responsive design and shadcn-inspired UI.',
-        fullDescription: `A modern portfolio website showcasing Flutter Web capabilities.
+        title: 'E-Commerce Mobile Platform',
+        description: 'Scalable retail application featuring a dynamic catalog, real-time cart state propagation, and Firebase user synchronization. Built using Clean Architecture and MVVM patterns.',
+        fullDescription: `A production-ready retail application designed to handle high transaction states across iOS and Android.
 
-Key Features:
-• Responsive design (Mobile, Tablet, Desktop)
-• Dark/Light mode support
-• shadcn/ui-inspired components
-• Smooth animations and transitions
-• Contact form with validation`,
-        technologies: ['Flutter Web', 'Dart', 'Responsive Design'],
+Key Technical Integrations:
+• Cartesian State Propagator: Employs Riverpod/Provider state propagation to instantly reflect catalog changes, coupon activations, and checkout totals across separate layout nodes.
+• Database Sync: Syncs user authentication, profile data, and secure orders with Firestore and Firebase Auth instances.
+• Repository & Service Decoupling: Abstracts remote data calls behind repository interfaces to allow seamless local testing and data mocking.`,
+        technologies: ['Flutter', 'Dart', 'Firebase', 'Provider', 'REST APIs'],
+        githubUrl: 'https://github.com/mel-adna/e-commerce-app',
+        imageUrl: 'assets/apps_screenshots/e_commerce_app_screenshot.png',
+        category: 'mobile',
+    },
+    {
+        title: 'Task Management & Productivity Suite',
+        description: 'A local-first task organizer featuring sqlite storage, category-based tag groupings, priority levels, and scheduled local notifications. Powered by BLoC.',
+        fullDescription: `A productivity tool optimized for speed, reliability, and offline data safety.
+
+Key Technical Integrations:
+• SQLite Persistent Storage: Implements relational schemas locally on the device with raw database queries for high speed and low memory usage.
+• BLoC State Management: Decouples view widgets from core workflow controllers to enforce clean unidirectional data flows.
+• Scheduled Alerts: Configures OS-level alarm registers to trigger task reminders even after device reboots.`,
+        technologies: ['Flutter', 'Dart', 'SQLite', 'BLoC', 'Local Notifications'],
+        githubUrl: 'https://github.com/mel-adna/task-manager-app',
+        imageUrl: 'assets/apps_screenshots/task_manager_screenshot.png',
+        category: 'mobile',
+    },
+    {
+        title: 'Location-Aware Weather Forecast System',
+        description: 'Location-aware weather forecaster retrieving meteorological data via RESTful APIs. Incorporates cache management and Riverpod to optimize bandwidth consumption.',
+        fullDescription: `A reliable meteorological client highlighting fluid animations and custom cache managers.
+
+Key Technical Integrations:
+• Riverpod Caching Framework: Saves recent queries and responses to avoid redundant REST requests, improving performance.
+• Geolocator Services: Accesses on-device GPS nodes to fetch localized conditions.
+• Animations: Utilizes custom canvas rendering for weather widgets.`,
+        technologies: ['Flutter', 'Dart', 'REST API', 'Riverpod', 'Geolocator'],
+        githubUrl: 'https://github.com/mel-adna/weather_app',
+        imageUrl: 'assets/apps_screenshots/weather_app_screenshot.png',
+        category: 'mobile',
+    },
+    {
+        title: 'Real-Time Encrypted Chat Engine',
+        description: 'Secure chat system utilizing socket streams and Firestore databases to perform instant message transmissions and media transfers.',
+        fullDescription: `A real-time messaging application designed with clean UX indicators.
+
+Key Technical Integrations:
+• Firestore Real-Time Streams: Subscribes to collection listener portals to receive text and media objects instantly.
+• Image Processing: Compresses and optimizes image binaries before upload to reduce Firestore network bandwidth.`,
+        technologies: ['Flutter', 'Dart', 'Firebase', 'Firestore', 'Cloud Storage'],
+        githubUrl: 'https://github.com/mel-adna/chat_app_2026',
+        imageUrl: 'assets/apps_screenshots/chat_2026_screenshot.png',
+        category: 'mobile',
+    },
+    {
+        title: 'Responsive Engineering Portfolio',
+        description: 'Clean, semantic developer portfolio website built using vanilla HTML, CSS variables, and modern Javascript, implementing SEO standards and clean code layouts.',
+        fullDescription: `A sleek developer portfolio showcasing professional work, active App Store deployments, and academic accomplishments.
+
+Key Technical Integrations:
+• Vanilla Stack Execution: Built without complex bundlers to achieve lightning-fast loading speeds and responsive layouts across mobile, tablet, and desktop.
+• Dark-Mode Layout: Uses responsive CSS variables and HSL palettes to display elegant dark layouts.
+• Contact Integration: Integrates AJAX-based Formspree portals with error boundary states and interactive success alerts.`,
+        technologies: ['HTML5', 'Vanilla CSS', 'Modern JavaScript', 'SEO Best Practices'],
         githubUrl: 'https://github.com/mel-adna/Portfolio_With_Flutter',
         demoUrl: 'https://mel-adna.github.io/',
         imageUrl: 'assets/apps_screenshots/web_site_screenshot.png',
@@ -113,49 +120,46 @@ Key Features:
 
 const experienceData = [
     {
-        company: 'Freelance',
-        role: 'Flutter Developer',
+        company: 'Independent App Development & Deployment',
+        role: 'iOS / Android Software Engineer',
         duration: '2025 - Present',
-        location: 'Morocco',
-        description: 'Building mobile applications for clients using Flutter and Firebase.',
+        location: 'Morocco (Remote / European Target)',
+        description: 'Architecting, developing, and deploying fully functional commercial mobile applications to the Apple App Store, managing end-to-end design, implementation, and compliance lifecycles.',
         responsibilities: [
-            'Developing cross-platform mobile applications with Flutter',
-            'Integrating Firebase services (Auth, Firestore, Storage)',
-            'Implementing clean architecture and best practices',
-            'Collaborating with clients to understand requirements',
-            'Delivering production-ready applications',
+            'Architected and deployed "SealX Manager" and "Tomato: Focus Timer" to the Apple App Store, passing strict App Store Review guidelines.',
+            'Implemented Clean Architecture and MVVM patterns with Riverpod and BLoC to ensure modular, testable, and scale-ready codebases.',
+            'Engineered local-first databases using SQLite/Hive and local storage sandboxing to guarantee privacy-focused user data processing.',
+            'Collaborated directly with testers to resolve UI, performance bottlenecks, background threading issues, and local notifications.',
+            'Created responsive layouts adhering to Apple Human Interface Guidelines and Material Design 3.'
         ],
-        technologies: ['Flutter', 'Dart', 'Firebase', 'REST API'],
+        technologies: ['Flutter', 'Dart', 'Riverpod', 'BLoC', 'iOS Sandbox', 'Local Databases'],
     },
     {
         company: '1337 Coding School (42 Network)',
         role: 'Software Engineering Student',
         duration: '2023 - Present',
-        location: 'Morocco',
-        description: 'Part of the prestigious 42 Network. Intensive peer-to-peer curriculum focused on deep computer science fundamentals.',
+        location: 'Khouribga, Morocco',
+        description: 'Intensive peer-to-peer, project-based computer science curriculum focusing on software architecture, algorithms, and low-level systems programming without standard libraries.',
         responsibilities: [
-            'Solved complex algorithmic challenges in C and C++',
-            'Collaborated in a peer-learning environment with strict code reviews',
-            'Built custom graphical engines and shell implementations',
-            'Developed strong problem-solving and self-learning capabilities',
-            'Mastered memory management and data structures',
+            'Architected and implemented low-level Unix utilities and custom shell interpreters in C, managing system signals, processes, file descriptors, and pipelines.',
+            'Engineered custom C++ graphics engines and pathfinding algorithms, practicing strict manual memory management (pointers, leaks prevention).',
+            'Developed full-stack web applications for ft_transcendence using React, TypeScript, Node.js, and WebSockets with strict peer evaluations.',
+            'Collaborated within complex team settings utilizing Git workflows and conducting rigid, peer-to-peer code reviews.'
         ],
-        technologies: ['C', 'C++', 'Algorithms', 'Git', 'Shell'],
+        technologies: ['C', 'C++', 'Unix Shell', 'React', 'Node.js', 'WebSockets', 'Algorithms', 'Docker'],
     },
     {
-        company: 'Self-Learning & Projects',
-        role: 'Flutter Developer',
+        company: 'Independent Mobile Research & Freelancing',
+        role: 'Software Developer',
         duration: '2022 - 2025',
         location: 'Morocco',
-        description: 'Intensive learning and building personal projects to master Flutter development.',
+        description: 'Researched mobile application architectures, state management patterns, and designed customized digital solutions for startup clients.',
         responsibilities: [
-            'Completed multiple Flutter courses and certifications',
-            'Built various personal projects to practice skills',
-            'Learned state management patterns (Provider, BLoC, Riverpod)',
-            'Studied clean architecture and design patterns',
-            'Contributed to open-source Flutter projects',
+            'Completed comprehensive certifications covering cross-platform development paradigms, widget rendering pipelines, and native integrations.',
+            'Designed and structured functional prototypes implementing BLoC, Riverpod, and Provider state solutions to compare performance benefits.',
+            'Configured Firebase Backends (Auth, Firestore, Cloud Functions) to deploy responsive, real-time database apps.'
         ],
-        technologies: ['Flutter', 'Dart', 'Firebase', 'SQLite'],
+        technologies: ['Flutter', 'Dart', 'Firebase', 'State Management', 'SQLite', 'REST APIs'],
     },
 ];
 
@@ -164,64 +168,63 @@ const skillsData = [
         name: 'Core Technologies',
         description: 'Primary development stack',
         icon: 'code',
-        skills: ['Flutter', 'Dart', 'Material Design 3', 'Custom Widgets', 'Animations'],
+        skills: ['Flutter', 'Dart', 'C++', 'C', 'React', 'Node.js', 'TypeScript', 'Docker'],
     },
     {
         name: 'State Management',
         description: 'Application state solutions',
         icon: 'hub',
-        skills: ['Provider', 'Riverpod', 'BLoC', 'GetX'],
+        skills: ['Riverpod', 'BLoC', 'Provider', 'GetX'],
     },
     {
         name: 'Backend & Database',
         description: 'Server-side integrations',
         icon: 'storage',
-        skills: ['Firebase', 'Firestore', 'REST APIs', 'SQLite', 'Hive'],
+        skills: ['Firebase', 'Firestore', 'REST APIs', 'PostgreSQL', 'SQLite', 'Hive'],
     },
     {
         name: 'Architecture & Patterns',
         description: 'Code organization & best practices',
         icon: 'architecture',
-        skills: ['Clean Architecture', 'MVVM', 'Repository Pattern', 'SOLID Principles'],
+        skills: ['Clean Architecture', 'Domain-Driven Design', 'SOLID Principles', 'Design Patterns'],
     },
     {
         name: 'Testing & Quality',
         description: 'Code quality assurance',
         icon: 'verified',
-        skills: ['Unit Testing', 'Widget Testing', 'Integration Testing'],
+        skills: ['Unit Testing', 'Widget Testing', 'Integration Testing', 'Apple Review Compliance'],
     },
     {
         name: 'Tools & Platforms',
         description: 'Development ecosystem',
         icon: 'build',
-        skills: ['Git', 'GitHub', 'VS Code', 'Android Studio', 'Figma'],
+        skills: ['Git', 'GitHub Actions', 'App Store Connect', 'Google Play Console', 'VS Code', 'Xcode', 'Android Studio'],
     },
 ];
 
 const aboutData = {
-    title: "Freelance Flutter Developer & Software Engineer",
-    description: `I am a results-driven Freelance Flutter Developer based in Morocco, transforming complex ideas into scalable, high-performance mobile apps. With a background in C++ from 1337 School (42 Network), I bring an engineering mindset to every project—ensuring your app is not just beautiful, but robust and efficient.
-
-Specializing in Cross-platform Development, I help startups and businesses build seamless iOS and Android solutions. Whether you need a brand-new app or performance optimization, I bring technical precision and creative flair to bring your vision to life.`,
+    title: "Software Engineer & Mobile App Architect",
+    description: `I am a Software Engineer who bridges the gap between raw low-level performance and polished, high-fidelity mobile products. My computer science foundation was built at 1337 Coding School (42 Network) in Morocco, where I mastered rigorous low-level algorithms, custom Unix systems programming, and memory allocation in C/C++ under strict peer review criteria.\n\nBuilding upon this deep systems pedigree, I self-directed my expertise in mobile and cross-platform app architecture using Flutter and Dart. I focus on developing production-grade, highly responsive applications utilizing Clean Architecture, SOLID principles, and clean state-management paradigms (BLoC, Riverpod). Having built, certified, and successfully launched multiple applications on the Apple App Store, I understand the end-to-end lifecycle of deploying production apps.\n\nI am actively seeking Software Engineering internships or full-time roles, specifically targeting Spain, Europe, or international remote teams. I am fully prepared to relocate or collaborate across borders.`,
     highlights: [
-        { icon: 'location_on', label: 'Based in Morocco' },
-        { icon: 'code', label: 'Flutter • Dart • Firebase' },
-        { icon: 'work', label: 'Open to Work' },
+        { icon: 'location_on', label: 'Morocco (Relocation Ready to Spain/Europe)' },
+        { icon: 'verified_user', label: 'App Store Published Developer' },
+        { icon: 'school', label: '1337 Coding School (42 Network)' },
+        { icon: 'code', label: 'Flutter • Dart • C/C++ • React • Node.js' }
     ],
     stats: [
-        { value: 'Flutter', label: 'Primary Framework' },
-        { value: 'Dart', label: 'Main Language' },
-        { value: 'Firebase', label: 'Backend Service' },
-        { value: 'Morocco', label: 'Location' },
+        { value: '2', label: 'Apps Live on App Store' },
+        { value: '1337', label: 'Systems Pedigree' },
+        { value: 'Clean Code', label: 'Architecture Focus' },
+        { value: 'Europe/Remote', label: 'Target Market' }
     ]
 };
 
 const contactData = {
-    header: "Let's work together",
-    description: "I'm always interested in hearing about new projects and opportunities. Whether you have a question or just want to say hi, feel free to reach out!",
+    header: "Let's build something extraordinary",
+    description: "I am actively seeking Software Engineering internships or full-time mobile developer positions (relocation to Spain/Europe or remote setups). If you are looking for an engineer with systems-level discipline who builds and deploys production-grade mobile experiences, let's connect!",
     email: 'mohamedeladnani0@gmail.com',
-    location: 'Morocco',
-    availability: 'Open to new opportunities',
+    location: 'Morocco (Relocation Ready)',
+    availability: 'Actively seeking Europe-based roles & Remote positions',
     socials: [
         { platform: 'GitHub', url: 'https://github.com/mel-adna', icon: 'fab fa-github' },
         { platform: 'LinkedIn', url: 'https://www.linkedin.com/in/mel-adna/', icon: 'fab fa-linkedin' },

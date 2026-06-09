@@ -193,49 +193,26 @@ function showToast(message, type = 'default') {
     }, 3000);
 }
 
-// Contact Form Handling (AJAX)
+// Contact Form Handling (mailto redirect)
 function initContactForm() {
     const form = document.getElementById('contact-form');
     if (!form) return;
 
-    form.addEventListener('submit', async function (event) {
+    form.addEventListener('submit', function (event) {
         event.preventDefault();
-        const button = form.querySelector('button[type="submit"]');
-        const originalText = button.innerHTML;
+        
+        const name = form.querySelector('input[name="name"]').value;
+        const email = form.querySelector('input[name="email"]').value;
+        const message = form.querySelector('textarea[name="message"]').value;
 
-        // Show loading state
-        button.disabled = true;
-        button.innerHTML = 'Sending... <span class="material-icons-round spin">sync</span>';
+        const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`);
+        const body = encodeURIComponent(`Hello Mohamed,\n\n${message}\n\nBest regards,\n${name}\nContact Email: ${email}`);
 
-        const data = new FormData(event.target);
+        // Redirect to local mail client
+        window.location.href = `mailto:${contactData.email}?subject=${subject}&body=${body}`;
 
-        try {
-            const response = await fetch(event.target.action, {
-                method: form.method,
-                body: data,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-
-            if (response.ok) {
-                showToast("Message sent successfully!", "success");
-                form.reset();
-            } else {
-                const errorData = await response.json();
-                if (Object.hasOwn(errorData, 'errors')) {
-                    showToast(errorData["errors"].map(error => error["message"]).join(", "), "error");
-                } else {
-                    showToast("Oops! There was a problem submitting your form.", "error");
-                }
-            }
-        } catch (error) {
-            showToast("Oops! Network error. Please try again.", "error");
-        } finally {
-            // Restore button state
-            button.disabled = false;
-            button.innerHTML = originalText;
-        }
+        showToast("Opening local email client...", "success");
+        form.reset();
     });
 }
 
@@ -352,7 +329,7 @@ function renderContact() {
             <!-- Contact Form -->
             <div class="card contact-form-card">
                 <h3 class="heading-small" style="margin-bottom: 1.5rem;">Send a message</h3>
-                <form id="contact-form" action="https://formspree.io/f/mykgroeo" method="POST" class="form-group">
+                <form id="contact-form" class="form-group">
                     <div class="form-group">
                         <label class="caption">Name</label>
                         <input type="text" name="name" placeholder="Your name" class="form-input" required>
@@ -464,7 +441,7 @@ function renderProjects(filter) {
                 <button class="btn btn-primary" style="padding: 0.4rem 1rem; font-size: 11px; border-radius: 2px;" onclick="openProjectModal(${projectsData.indexOf(project)})">DETAILS</button>
                 <div style="display: flex; gap: 0.5rem;">
                     ${project.githubUrl ? `<a href="${project.githubUrl}" target="_blank" class="btn btn-ghost" style="padding: 0.25rem 0.5rem; font-size: 14px;"><i class="fab fa-github"></i></a>` : ''}
-                    ${project.demoUrl ? `<a href="${project.demoUrl}" target="_blank" class="btn btn-ghost" style="padding: 0.25rem 0.5rem; font-size: 14px;"><i class="fas fa-external-link-alt"></i></a>` : ''}
+                    ${project.demoUrl ? `<a href="${project.demoUrl}" target="_blank" class="btn btn-ghost" style="padding: 0.25rem 0.5rem; font-size: 14px;"><i class="${project.demoUrl.includes('apps.apple.com') ? 'fab fa-apple' : 'fas fa-external-link-alt'}"></i></a>` : ''}
                 </div>
             </div>
         `;
@@ -672,7 +649,7 @@ function openProjectModal(index) {
             </div>
 
             <div class="modal-footer-actions" style="margin-top: 3rem; display: flex; gap: 1rem;">
-                ${project.demoUrl ? `<a href="${project.demoUrl}" target="_blank" class="btn btn-primary">LIVE EXPERIENCE</a>` : ''}
+                ${project.demoUrl ? `<a href="${project.demoUrl}" target="_blank" class="btn btn-primary" style="display: inline-flex; align-items: center; gap: 0.5rem;">${project.demoUrl.includes('apps.apple.com') ? '<i class="fab fa-apple"></i> GET ON APP STORE' : 'LIVE EXPERIENCE'}</a>` : ''}
                 ${project.githubUrl ? `<a href="${project.githubUrl}" target="_blank" class="btn btn-outline">SOURCE CODE</a>` : ''}
             </div>
         </div>
