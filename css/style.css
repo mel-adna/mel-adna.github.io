@@ -1,52 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syncopate:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 :root {
-  /* Tech/Cyber Theme Defaults (Enforcing strict dark aesthetic) */
-  --background: #050505;
-  --background-rgb: 5, 5, 5;
-  --foreground: #FAFAFA;
-  --card: #0F0F0F;
-  --card-rgb: 15, 15, 15;
-  --card-foreground: #FAFAFA;
-  --primary: #00FF66; /* Neon Green */
-  --primary-foreground: #000000;
-  --secondary: #161616;
-  --secondary-foreground: #FAFAFA;
-  --muted: #161616;
-  --muted-foreground: #888888;
-  --accent: #00FF66;
-  --accent-foreground: #000000;
-  --border: rgba(255, 255, 255, 0.1);
-  --input: #161616;
-  --ring: #00FF66;
-  
-  /* Sharper borders for tech feel */
+  /* Calm dark theme — restrained accent, no neon */
+  --background: #0A0A0B;
+  --background-rgb: 10, 10, 11;
+  --foreground: #ECECEE;
+  --card: #131315;
+  --card-rgb: 19, 19, 21;
+  --card-foreground: #ECECEE;
+  --primary: #A8C7FA;
+  --primary-foreground: #0A0A0B;
+  --secondary: #17171A;
+  --secondary-foreground: #ECECEE;
+  --muted: #17171A;
+  --muted-foreground: #8A8A93;
+  --accent: #A8C7FA;
+  --accent-foreground: #0A0A0B;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: #17171A;
+  --ring: #A8C7FA;
+
   --radius: 0.375rem;
   --radius-lg: 0.5rem;
   --radius-full: 9999px;
-  
-  --grid-color: rgba(255, 255, 255, 0.03);
+
+  --grid-color: transparent;
 }
 
 [data-theme='dark'], [data-theme='light'] {
-  /* Enforce dark theme variables everywhere to stay true to reference */
-  --background: #050505;
-  --background-rgb: 5, 5, 5;
-  --foreground: #FAFAFA;
-  --card: #0F0F0F;
-  --card-rgb: 15, 15, 15;
-  --card-foreground: #FAFAFA;
-  --primary: #00FF66;
-  --primary-foreground: #000000;
-  --secondary: #161616;
-  --secondary-foreground: #FAFAFA;
-  --muted: #161616;
-  --muted-foreground: #888888;
-  --accent: #00FF66;
-  --accent-foreground: #000000;
-  --border: rgba(255, 255, 255, 0.1);
-  --input: #161616;
-  --ring: #00FF66;
+  --background: #0A0A0B;
+  --background-rgb: 10, 10, 11;
+  --foreground: #ECECEE;
+  --card: #131315;
+  --card-rgb: 19, 19, 21;
+  --card-foreground: #ECECEE;
+  --primary: #A8C7FA;
+  --primary-foreground: #0A0A0B;
+  --secondary: #17171A;
+  --secondary-foreground: #ECECEE;
+  --muted: #17171A;
+  --muted-foreground: #8A8A93;
+  --accent: #A8C7FA;
+  --accent-foreground: #0A0A0B;
+  --border: rgba(255, 255, 255, 0.08);
+  --input: #17171A;
+  --ring: #A8C7FA;
 }
 
 * {
@@ -62,13 +60,6 @@ body {
   line-height: 1.6;
   transition: background-color 0.3s ease, color 0.3s ease;
   overflow-x: hidden;
-  
-  /* Tech grid background overlay */
-  background-image: 
-    linear-gradient(var(--grid-color) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-  background-size: 50px 50px;
-  background-attachment: fixed;
 }
 
 a {
@@ -88,14 +79,14 @@ img {
 
 /* Typography Utility Classes based on AppTypography */
 h1, h2, h3, h4, h5, h6, .display-large, .display-medium, .display-small, .heading-large, .heading-medium, .heading-small {
-  font-family: 'Syncopate', sans-serif;
-  text-transform: uppercase;
+  font-family: 'Space Grotesk', sans-serif;
+  text-transform: none;
 }
 
 .display-large {
-  font-size: min(8vw, 84px);
-  font-weight: 700;
-  letter-spacing: -2px;
+  font-size: min(7vw, 72px);
+  font-weight: 600;
+  letter-spacing: -2.5px;
   line-height: 1.05;
 }
 
@@ -199,8 +190,8 @@ h1, h2, h3, h4, h5, h6, .display-large, .display-medium, .display-small, .headin
   border: 1px solid transparent;
   gap: 0.5rem;
   font-family: 'Space Grotesk', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  text-transform: none;
+  letter-spacing: 0.2px;
 }
 
 .btn-lg {
@@ -211,14 +202,12 @@ h1, h2, h3, h4, h5, h6, .display-large, .display-medium, .display-small, .headin
 .btn-primary {
   background-color: var(--primary);
   color: var(--primary-foreground);
-  box-shadow: 0 0 15px rgba(0, 255, 102, 0.3);
 }
 
 .btn-primary:hover {
   background-color: transparent;
   color: var(--primary);
   border-color: var(--primary);
-  box-shadow: 0 0 20px rgba(0, 255, 102, 0.5);
 }
 
 .btn-outline {
