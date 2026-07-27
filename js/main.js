@@ -2,7 +2,7 @@
 
 // CV served by the "Download CV" button. See the regional targeting note at the
 // top of data.js for how the two versions of this site are kept apart.
-const RESUME_FILE = 'assets/docs/Mohamed_El_Adnani_CV_Morocco.pdf';
+const RESUME_FILE = 'assets/docs/Mohamed_El_Adnani_CV.pdf';
 
 document.addEventListener('DOMContentLoaded', () => {
     // Theme Toggle
